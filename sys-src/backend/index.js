@@ -1,28 +1,40 @@
-const express = require('express')
-const socketIo = require('socket.io')
-const http = require('http')
+const express = require('express');
+const app = express();
+const http = require('http');
+const { Server } = require("socket.io");
 const PORT = process.env.PORT || 3001
-const app = express()
-const server = http.createServer(app)
-const io = socketIo(server,{ 
+
+app.use(express.urlencoded({extended: true}));
+
+const server = http.createServer(app);
+
+const io = new Server(server, {
     cors: {
-      origin: 'http://localhost:3000'
-    }
-})
+        origin: "http://localhost:3000",
+    },
+});
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+let clientNo = 0;
 
-io.on('connection',(socket)=>{
-  console.log('client connected: ',socket.id)
-  
-  socket.join('clock-room')
-  
-  socket.on('disconnect',(reason)=>{
-    console.log(reason)
-  })
-})
+io.on("connection", (socket) => {
+    console.log(`User Connected: ${socket.id}`);
+    clientNo++;
+
+    //socket.join(Math.round(clientNo/2));
+    //socket.emit('serverMsg', roomNo);
+
+    console.log(`User Anzahl: ${clientNo}`);
+    socket.on("join_room", (data) => {
+        socket.join(data);
+        console.log(`User with ID: ${socket.id} joined room: ${data}`)
+    })
+    socket.on("disconnect", () => {
+        clientNo--;
+        console.log(`User Anzahl: ${clientNo}`);
+        console.log("User Disconnected", socket.id);
+    })
+});
+
 
 setInterval(()=>{
      io.to('clock-room').emit('time', new Date())
