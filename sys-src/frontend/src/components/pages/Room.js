@@ -26,15 +26,14 @@ socket.on("roomalreadyexists", () => {
   //dieser raum existiert bereits
 })
 
-
 let roomsize;
-const players = [];
+let userjoined;
 
-socket.on("userJoinsLobby", (name, size) => {
+socket.on("userJoinsLobby", (name, size) =>{
   roomsize = size;
-  players.push(name);
-  // hier werden dem aktuellen client nur die nächst beitretenden clients angezeigt
-  console.log(`User in dem Raum ${players} und die Raumbelegung ${roomsize} von 2`)
+  userjoined = name
+  // hier werden dem aktuellen client nur die nächst beitretenden clients angezeigt und er selbst inkludiert
+  console.log(`Der User ${userjoined} trifft ein und die Raumbelegung ${roomsize} von 5`)
 })
 
 function Room() {
