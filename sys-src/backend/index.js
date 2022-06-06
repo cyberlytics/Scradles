@@ -4,6 +4,7 @@ const http = require('http');
 const { Server } = require("socket.io");
 const PORT = process.env.PORT || 3001
 
+
 app.use(express.urlencoded({extended: true}));
 
 const server = http.createServer(app);
@@ -37,8 +38,15 @@ app.get('/', (req, res) => {
 
 app.use('/leaderboard', leaderboard)
 
+
+//gamearray
+let lobbyfunctions = require('./game/gamelobbyfunctions')
+
+
 //Socket
 let clientNo = 0;
+
+
 
 io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
@@ -55,23 +63,26 @@ io.on("connection", (socket) => {
                 socket.join(data);
                 console.log(`lobbysize ${io.sockets.adapter.rooms.get(data).size}`)
                 console.log(`User with ID: ${socket.id} joined room: ${data}`)
-                socket.emit("joined")
-                //schickt allen clients im selben raum die nachricht, alle clients die nach einem gejoint werden beim vorherig gejointen client angezeigt
-                io.in(data).emit("userJoinsLobby", name, io.sockets.adapter.rooms.get(data).size)
+                let gamejoinobject = lobbyfunctions.joinGame(data, name, socket.id)
+                socket.emit("joined", gamejoinobject)
+                //schickt allen clients im selben raum die nachricht
+                io.in(data).emit("userJoinsLobby", gamejoinobject, io.sockets.adapter.rooms.get(data).size)
             }
             else{
                 console.log('Cant join a full lobby')
                 socket.emit("lobby_voll")
             }
         }      
-    })
+    }) 
 
     socket.on("create_room", (data, name) =>{
         if(io.sockets.adapter.rooms.get(data) == null){
             console.log(`raum ${data} wurde erstellt`)
             socket.join(data);
-            socket.emit('joined')
-            io.in(data).emit("userJoinsLobby", name, io.sockets.adapter.rooms.get(data).size)
+            let gameobject = lobbyfunctions.addGame(name, socket.id, data);
+            socket.emit('joined', gameobject)
+            console.log(gameobject)
+            io.in(data).emit("userJoinsLobby", gameobject, io.sockets.adapter.rooms.get(data).size)
         }
         else{
             console.log("er existiert bereits")

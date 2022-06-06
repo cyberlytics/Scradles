@@ -29,11 +29,10 @@ socket.on("roomalreadyexists", () => {
 let roomsize;
 let userjoined;
 
-socket.on("userJoinsLobby", (name, size) =>{
+socket.on("userJoinsLobby", (gameobject, size) =>{
   roomsize = size;
-  userjoined = name
-  // hier werden dem aktuellen client nur die nächst beitretenden clients angezeigt und er selbst inkludiert
-  console.log(`Der User ${userjoined} trifft ein und die Raumbelegung ${roomsize} von 5`)
+  // hier wird dem aktuellen client das gameobject zur verfügung gestellt
+  console.log(`Der/Die User ${gameobject.player1} und ${gameobject.player2} trifft/treffen ein und die Raumbelegung ${roomsize} von 2`)
 })
 
 function Room() {
@@ -41,7 +40,8 @@ function Room() {
   let navigate = useNavigate();
 
   // problem mit react router, springt auf die seite zig mal, funktioniert aber trotzdem. feature?
-  socket.on("joined", () => {
+  socket.on("joined", (gameobject) => {
+    console.log(gameobject)
     navigate("/Lobby");
   })
 
