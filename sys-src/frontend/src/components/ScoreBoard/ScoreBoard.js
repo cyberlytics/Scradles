@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function ScoreBoard(props) {
     return (
-        <div style={ { marginTop: '100%', marginBottom: '100%'} }>
+        <div>
             <p>Score</p>
             <div style={ { minHeight: 50} }>
                 <div className={"circle score-" + (props.score1 === undefined ? 'null' : props.score1)} />

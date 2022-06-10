@@ -1,22 +1,14 @@
-
 import ScoreBoard from '../ScoreBoard/ScoreBoard';
 import GameBoard from '../GameBoard/GameBoard';
+import './Ingame.css';
 
 function Ingame() {
     return (
-        <table style={ { width: '100%'} }>
-        <tr>
-            <td style={ { width: '40%', backgroundColor: 'lightgray'} }>
-                <GameBoard value="Schere"/>
-            </td>
-            <td style={ { width: '20%'} }>
-                <ScoreBoard score1="win" score2="loss"/>
-            </td>
-            <td style={ { width: '40%', backgroundColor: 'lightgray'} }>
-                <GameBoard value="Stein"/>
-            </td>
-        </tr>
-        </table>
+        <div className='ingame-container'>
+            <div className='gameboard'><GameBoard value="Schere"/></div>
+            <div className='scoreboard'><ScoreBoard score1="win" score2="loss"/></div>
+            <div className='gameboard'><GameBoard value="Stein"/></div>
+        </div>
     );
 }
 
