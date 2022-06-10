@@ -63,7 +63,7 @@ function Room() {
 
   return (
 
-    <div className="App">
+    <div className="Room">
       <input type="text" placeholder="Name..." onChange={(event) => {
         setUsername(event.target.value);
       }}
