@@ -1,53 +1,49 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useContext ,useEffect, useLayoutEffect } from 'react';
 import { useState, setTime } from "react";
 import io from 'socket.io-client';
 import { useNavigate, useParams } from 'react-router-dom';
-
-
-
-const socket = io('http://localhost:8080')
-socket.on('connect', () => console.log(socket.id))
-socket.on('connect_error', () => {
-  setTimeout(() => socket.connect(), 5000)
-})
-socket.on('time', (data) => setTime(data))
-socket.on('disconnect', () => setTime('server disconnected'))
-
-
-socket.on("lobby_null", () => {
-  //dieser raum exisitiert nicht, erstelle einen raum oder such nach einem existentem raum. 
-})
-
-socket.on("lobby_voll", () => {
-  //dieser raum ist voll!
-})
-
-socket.on("roomalreadyexists", () => {
-  //dieser raum existiert bereits
-})
-
-let roomsize;
-let userjoined;
-
-socket.on("userJoinsLobby", (gameobject, size) =>{
-  roomsize = size;
-  // hier wird dem aktuellen client das gameobject zur verfügung gestellt
-  console.log(`Der/Die User ${gameobject.player1} und ${gameobject.player2} trifft/treffen ein und die Raumbelegung ${roomsize} von 2`)
-})
+import {SocketContext} from '../../context/socket';
 
 function Room() {
 
   let navigate = useNavigate();
+  const socket = useContext(SocketContext);
 
-  // problem mit react router, springt auf die seite zig mal, funktioniert aber trotzdem. feature?
-  socket.on("joined", (gameobject) => {
-    console.log(gameobject)
-    navigate("/Lobby");
-  })
+  let roomsize;
+  let userjoined;
 
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
 
+  useEffect(() => {
+    socket.on("lobby_null", () => {
+      //dieser raum exisitiert nicht, erstelle einen raum oder such nach einem existentem raum. 
+    })
+    
+    socket.on("lobby_voll", () => {
+      //dieser raum ist voll!
+    })
+    
+    socket.on("roomalreadyexists", () => {
+      //dieser raum existiert bereits
+    })
+
+    socket.on("userJoinsLobby", (gameobject, size) =>{
+      roomsize = size;
+      // hier wird dem aktuellen client das gameobject zur verfügung gestellt
+      console.log(`Der/Die User ${gameobject.player1} und ${gameobject.player2} trifft/treffen ein und die Raumbelegung ${roomsize} von 2`)
+    })
+
+    socket.on("joined", (gameobject) => {
+      console.log(gameobject)
+      navigate("/Lobby");
+    })
+
+    return () => {
+
+    }
+  }, [socket])
+  
   const joinRoom = () => {
 
     if (username !== "" && room !== "") {
@@ -60,7 +56,7 @@ function Room() {
       socket.emit("create_room", room, username);
     }
   }
-
+  
   return (
 
     <div className="Room">
