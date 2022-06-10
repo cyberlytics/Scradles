@@ -1,7 +1,6 @@
-import React, { useContext ,useEffect, useLayoutEffect } from 'react';
-import { useState, setTime } from "react";
-import io from 'socket.io-client';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useContext ,useEffect} from 'react';
+import { useState} from "react";
+import { useNavigate} from 'react-router-dom';
 import {SocketContext} from '../../context/socket';
 
 function Room() {
@@ -40,7 +39,14 @@ function Room() {
     })
 
     return () => {
-
+      // hier sollten auch noch die genau callbacks angegeben werden (socket.off("lobby_null", this.onLobbyFull))
+      // dafür irgendwann die funktionen auslagern
+      // aktuell werden so alle callbacks für dieses event entfernt
+      socket.off("lobby_null");
+      socket.off("lobby_voll");
+      socket.off("roomalreadyexists");
+      socket.off("userJoinsLobby");
+      socket.off("joined");
     }
   }, [socket])
   
