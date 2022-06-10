@@ -2,6 +2,7 @@ import React, { useContext ,useEffect} from 'react';
 import { useState} from "react";
 import { useNavigate} from 'react-router-dom';
 import {SocketContext} from '../../context/socket';
+import './pages.css';
 
 function Room() {
 
@@ -35,7 +36,7 @@ function Room() {
 
     socket.on("joined", (gameobject) => {
       console.log(gameobject)
-      navigate("/Lobby");
+      navigate("/Lobby", {state: {mode: 'createdRoom'}});
     })
 
     return () => {
@@ -64,20 +65,20 @@ function Room() {
   }
   
   return (
-
-    <div className="Room">
-      <input type="text" placeholder="Name..." onChange={(event) => {
-        setUsername(event.target.value);
-      }}
-      />
-      <input type="text" placeholder='Room ID' onChange={(event) => {
-        setRoom(event.target.value);
-      }} />
-
-      <button onClick={(joinRoom)}>Join a Room
-      </button>
-      <button onClick={(createRoom)}>Create a Room
-      </button>
+    <div className='room-container'>
+      <div className="room">
+        <h3>Raum erstellen/beitreten</h3>
+        <input type="text" placeholder="Name..." onChange={(event) => {
+          setUsername(event.target.value);
+          }}
+        />
+        <input type="text" placeholder='Room ID' onChange={(event) => {
+          setRoom(event.target.value);
+          }} 
+        />
+        <button onClick={(joinRoom)}>Join a Room</button>
+        <button onClick={(createRoom)}>Create a Room</button>
+    </div>
     </div>
   )
 }
