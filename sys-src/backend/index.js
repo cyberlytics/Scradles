@@ -3,7 +3,8 @@ const app = express();
 const http = require('http');
 const { Server } = require("socket.io");
 const PORT = process.env.PORT || 3001
-
+const { createAdapter } = require("@socket.io/mongo-adapter");
+const { MongoClient } = require("mongodb");
 
 app.use(express.urlencoded({extended: true}));
 
@@ -25,6 +26,32 @@ const db = mongoose.connection;
 
 db.on('connected', console.log.bind(console, 'Connected to mongoDB'));
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+//Set up socketio adapter
+const DB = "scradles";
+const COLLECTION = "socket.io-adapter-events";
+
+const mongoClient = new MongoClient("mongodb://mongo:27017", {
+  useUnifiedTopology: true,
+});
+
+const connectAdapter = async () => {
+    await mongoClient.connect();
+  
+    try {
+      await mongoClient.db(DB).createCollection(COLLECTION, {
+        capped: true,
+        size: 1e6
+      });
+    } catch (e) {
+      // collection already exists
+    }
+    const mongoCollection = mongoClient.db(DB).collection(COLLECTION);
+  
+    io.adapter(createAdapter(mongoCollection));
+}
+  
+connectAdapter();
 
 //Router
 let leaderboard = require('./routes/leaderboardRoute')
