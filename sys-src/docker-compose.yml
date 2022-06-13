@@ -1,0 +1,37 @@
+version: '3.4'
+services:
+  backend1:
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001" # "3001:3001" wenn ohne docker dns
+    volumes:
+      - ./backend/:/usr/src/app
+      - /usr/src/app/node_modules/
+    links:
+      - mongo
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend1
+  frontend:
+    container_name: react
+    restart: always
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend/:/usr/src/app
+      - /usr/src/app/node_modules/
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db/:/data/db
