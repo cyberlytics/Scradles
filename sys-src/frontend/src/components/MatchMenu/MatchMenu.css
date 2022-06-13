@@ -1,0 +1,30 @@
+.matchmenu-container {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.matchmenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(66, 66, 66);
+    gap: 20px;
+    width: 30%;
+    padding: 40px;
+    border-radius: 30px;
+}
+
+.matchmenu button {
+    width: 80%;
+}
+
+.matchmenu h3 {
+    margin: 0;
+    color: chocolate;
+}

@@ -1,0 +1,39 @@
+.container {
+    flex-grow: 1;
+}
+
+.room-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.room {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(66, 66, 66);
+    gap: 20px;
+    width: 30%;
+    padding: 40px;
+    border-radius: 30px;
+}
+
+.room button {
+    width: 80%;
+    padding: 0;
+}
+
+.room input {
+    width: 80%;
+    padding: 0;
+}
+
+.room h3 {
+    margin: 0;
+    color: chocolate;
+}
