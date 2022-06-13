@@ -1,0 +1,66 @@
+.Login {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.LoginElement {
+    width: 400px;
+    height: 300px;
+    margin-top: 100px;
+    background-color: grey;
+}
+
+.Text {
+    text-align: center;
+}
+
+.Username {
+    width: 76%;
+    outline: none;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 6%;
+    padding: 10px 20px;
+    
+    background-color: rgb(66, 66, 66);
+    border: 2px solid rgba(0, 0, 0, 0.02);
+
+    font-weight: 700;
+    font-size: 14px;
+    color: chocolate;
+    text-align: center;
+}
+
+.Password {
+    width: 76%;
+    outline: none;
+    border: 0;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    margin-left: 6%;
+    padding: 10px 20px;
+
+    background-color: rgb(66, 66, 66);
+
+    font-weight: 700;
+    font-size: 14px;
+    color: chocolate;
+    text-align: center;
+}
+
+.Submit {
+    cursor: pointer;
+
+    width: 160px;
+    border: 0;
+    padding: 10px 40px;
+    margin-left:29.5%;
+    border-radius: 20px;
+
+    background-color: chocolate;
+    
+    font-weight: 600;
+    font-size: 14px;
+}
