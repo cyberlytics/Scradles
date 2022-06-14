@@ -11,6 +11,11 @@
 .header-title {
     margin: 0;
     color: chocolate;
+    cursor: pointer;
+}
+
+.header-title:hover {
+    color: rgb(236, 118, 34);
 }
 
 nav {

@@ -1,0 +1,23 @@
+.RankedLadderElement {
+    width: 100%;
+    background-color: rgb(180, 180, 180);
+
+    display: grid;
+    border-radius: 5px;
+}
+
+.Number {
+    grid-column: 1;
+    padding: 10px;
+}
+
+.Score {
+    grid-column-start: 2;
+    padding: 10px;
+}
+
+.Player {
+    grid-column-start: 3;
+    grid-column-end: 10;
+    padding: 10px;
+}
