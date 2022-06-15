@@ -19,7 +19,7 @@ function App() {
           <Route path ="/" element={<Startpage/>}/>
           <Route path ="/Room" element={<Room/>}/>
           <Route path="/Lobby" element={<Lobby/>}/>
-          <Route path="/RankedLadder" element={<Ladder/>}/>
+          <Route path="/Leaderboard" element={<Ladder/>}/>
           <Route path ="*" element={<Startpage/>}/>
         </Routes>
         <Footer/>
