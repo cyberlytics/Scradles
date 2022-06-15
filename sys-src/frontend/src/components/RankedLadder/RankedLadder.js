@@ -1,13 +1,27 @@
+import { useEffect, useState } from 'react';
 import RankedLadderElement from '../RankedLadderElement/RankedLadderElement';
 import './RankedLadder.css';
 
 function RankedLadder(props) {
 
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:8080/leaderboard/all')
+        .then(response => response.json())
+        .then(data => setData(data))
+        .catch(error => console.error(error));
+    }, []);
+
     return(
         <div className='RankedLadder'>
-            <div className='RankedLadderItem'><RankedLadderElement number={1} score={3412} player='Olaf' /></div>
-            <div className='RankedLadderItem'><RankedLadderElement number={2} score={2341} player='Franz' /></div>
-            <div className='RankedLadderItem'><RankedLadderElement number={3} score={1234} player='Reiner' /></div>
+            {data.map((args, i) => {
+                return(
+                    <div key={args._id} className='RankedLadderItem'>
+                        <RankedLadderElement number={i + 1} score={args.points} player={args.name} />
+                    </div>
+                );
+            })}
         </div>
     );    
 }
