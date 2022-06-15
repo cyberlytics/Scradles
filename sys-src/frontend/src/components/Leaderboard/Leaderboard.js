@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import RankedLadderElement from '../RankedLadderElement/RankedLadderElement';
-import './RankedLadder.css';
+import LeaderboardElement from '../LeaderboardElement/LeaderboardElement';
+import './Leaderboard.css';
 
-function RankedLadder(props) {
+function Leaderboard(props) {
 
     const [data, setData] = useState([]);
 
@@ -14,11 +14,11 @@ function RankedLadder(props) {
     }, []);
 
     return(
-        <div className='RankedLadder'>
+        <div className='Leaderboard'>
             {data.map((args, i) => {
                 return(
-                    <div key={args._id} className='RankedLadderItem'>
-                        <RankedLadderElement number={i + 1} score={args.points} player={args.name} />
+                    <div key={args._id} className='LeaderboardItem'>
+                        <LeaderboardElement number={i + 1} score={args.points} player={args.name} />
                     </div>
                 );
             })}
@@ -27,4 +27,4 @@ function RankedLadder(props) {
 }
 
 
-export default RankedLadder;
+export default Leaderboard;
