@@ -95,19 +95,20 @@ io.on("connection", (socket) => {
                 console.log(`lobbysize ${io.sockets.adapter.rooms.get(data).size}`)
                 console.log(`User with ID: ${socket.id} joined room: ${data}`)
                 let gamejoinobject = lobbyfunctions.joinGame(data, name, socket.id)
+                console.log(gamejoinobject);
                 socket.emit("joined", gamejoinobject)
                 //schickt allen clients im selben raum die nachricht
                 io.in(data).emit("userJoinsLobby", gamejoinobject, io.sockets.adapter.rooms.get(data).size)
             }
-            else{
+            else {
                 console.log('Cant join a full lobby')
                 socket.emit("lobby_voll")
             }
-        }      
-    }) 
+        }
+    })
 
-    socket.on("create_room", (data, name) =>{
-        if(io.sockets.adapter.rooms.get(data) == null){
+    socket.on("create_room", (data, name) => {
+        if (io.sockets.adapter.rooms.get(data) == null) {
             console.log(`raum ${data} wurde erstellt`)
             socket.join(data);
             let gameobject = lobbyfunctions.addGame(name, socket.id, data);
@@ -115,7 +116,7 @@ io.on("connection", (socket) => {
             console.log(gameobject)
             io.in(data).emit("userJoinsLobby", gameobject, io.sockets.adapter.rooms.get(data).size)
         }
-        else{
+        else {
             console.log("er existiert bereits")
             socket.emit('roomalreadyexists')
         }
@@ -125,6 +126,30 @@ io.on("connection", (socket) => {
         clientNo--;
         console.log(`User Anzahl: ${clientNo}`);
         console.log("User Disconnected", socket.id);
+        let gameleaveobject = lobbyfunctions.leaveGame(socket.id);
+        console.log(gameleaveobject)
+        
+        if (gameleaveobject != undefined) {
+            console.log(gameleaveobject.players.length)
+            // der raum wird gelöscht und alle spieler darin entfernt wenn creater verlässt
+            if (gameleaveobject.players[0].socket == socket.id) {
+                console.log("der creator ist raus")
+                io.in(gameleaveobject.id).emit("LobbyWurdeEntfernt")
+                io.in(gameleaveobject.id).socketsLeave(gameleaveobject.id);
+            }
+            // gameobject wird ans frontend weiter gereicht wenn spieler 2 den raum verlässt
+            else if (gameleaveobject.players[1].socket == socket.id) {
+                console.log("der zweite spieler ist raus")
+                io.in(gameleaveobject.id).emit("userLeavesLobby", gameleaveobject, io.sockets.adapter.rooms.get(gameleaveobject.id).size)
+            } 
+        }
+        else {
+            console.log(gameleaveobject)
+            console.log("er war in keinem raum")
+
+        }
+        // wenn spieler 1 verlässt dann raum schliesen und spieler 2 in lobby suchen bereich zurück setzen
+        // wenn spieler 2 verlässt dann bleibt raum bestehen und spieler 1 bekommt eine nachricht
     })
 });
 
