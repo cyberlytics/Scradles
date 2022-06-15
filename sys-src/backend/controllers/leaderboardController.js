@@ -10,6 +10,22 @@ exports.leaderboard_all = async (req, res) => {
     }
 };
 
+// GET all entries with pagination (0 indexed)
+exports.leaderboard_bulk = async (req, res) => {
+    try {
+        let page = req.params.page;
+        let result = await leaderboardModel.find({})
+            .sort({ "points": -1})
+            .skip(10 * page)
+            .limit(10)
+            .exec();
+        console.log("bulk result", result);
+        res.send(result);
+    } catch (error) {
+        res.json({"status":"error"})
+    }
+};
+
 // POST add entry
 exports.leaderboard_add = function(req, res) {
     let name = "test";
