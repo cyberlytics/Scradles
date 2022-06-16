@@ -10,7 +10,7 @@ function timeout() {
 
     function ausloggen() {
 
-        window.location.href = '/action/logout';  //mit den Server anpassen
+        window.location.href = ;  //mit den Server anpassen
 
     }
 
