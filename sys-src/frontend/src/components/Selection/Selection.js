@@ -1,17 +1,16 @@
 import "./Selection.css";
 
-
 function Selection() {
     return (
         <div>
             <button>
-                Scissors
+                Schere
             </button>
             <button>
-                Rock
+                Stein
             </button>
             <button>
-                Paper
+                Papier
             </button>
         </div>
     );
