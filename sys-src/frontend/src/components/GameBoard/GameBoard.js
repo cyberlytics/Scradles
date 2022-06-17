@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import react from 'react';
 import Selection from '../Selection/Selection';
 
+import './GameBoard.css';
+
 import Schere from '../images/schere.svg';
 import Papier from '../images/papier.svg';
 import Stein from '../images/stein.svg';
