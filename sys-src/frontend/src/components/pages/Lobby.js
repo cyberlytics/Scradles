@@ -18,7 +18,10 @@ function Lobby(){
     let roomsize;
     let userjoined;
 
-    console.log(gameobject)
+    const handleSelection = (selection) => {
+        console.log(`Lobby selection: ${selection}`) 
+    }
+
     useEffect(() => {
         socket.on("userJoinsLobby", (gameobject, size) =>{
           roomsize = size;
@@ -36,7 +39,7 @@ function Lobby(){
 
     return(
         <div className='container'>
-            <Ingame gameobject={gameobjectState} playerNumber={playerNumber} />
+            <Ingame gameobject={gameobjectState} playerNumber={playerNumber} onSelectionChange={handleSelection}/>
         </div>
     )
 }
