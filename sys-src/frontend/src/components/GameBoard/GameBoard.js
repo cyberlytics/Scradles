@@ -3,7 +3,12 @@ import './gameboard.css';
 import Selection from '../Selection/Selection';
 
 function GameBoard(props) {
-
+    let selection
+    if(props.main === true){
+        selection = <Selection onSelectionChange={props.onSelectionChange}/>
+    } else {
+        selection = <></>
+    }
     return(
         <div className='gameboard'>
             <div className='gameboard-name'>
@@ -13,7 +18,7 @@ function GameBoard(props) {
                 <p>{props.value}</p>
             </div>
             <div className='gameboard-selection'>
-                <Selection/>
+                {selection}
             </div>
         </div>
     );    

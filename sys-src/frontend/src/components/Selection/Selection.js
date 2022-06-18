@@ -4,9 +4,9 @@ function Selection(props) {
 
     return(
         <div className='selection'>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
+            <button onClick={() => props.onSelectionChange("Schere")}>Schere</button>
+            <button onClick={() => props.onSelectionChange("Stein")}>Stein</button>
+            <button onClick={() => props.onSelectionChange("Papier")}>Papier</button>
         </div>
     );    
 }
