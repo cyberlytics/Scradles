@@ -12,7 +12,10 @@ exports.addGame = function (username, socketID, roomname) {
         started: false,
         p1Choice: [],
         p2Choice: [],
-        winner: ''
+        winner: '',
+        roundWinner: [],
+        roundNumber: 0,
+        inRound: false
     }
     games.push(game);
     return game;
@@ -63,4 +66,50 @@ exports.leaveGame = function leaveGame(socketID) {
     };
     console.log("spieler ist in keiner der räume")
     return undefined;
+}
+
+exports.addSelection = function addSelection(socket, roomName, selection){
+    for(let game of games){
+        if(game.id === roomName){
+            let diff = game.p1Choice.length - game.p2Choice.length
+            if(game.players[0].socket === socket){
+                if(diff <= 0){
+                    game.p1Choice.push(selection)
+                }
+            } else {
+                if(diff >= 0){
+                    game.p2Choice.push(selection)
+                }
+            }
+            return game;
+        }
+    }
+}
+
+exports.addRoundWinner = function addRoundWinner(player, roomName){
+    for(let game of games){
+        if(game.id === roomName){
+            game.roundWinner.push(player)
+            return game;
+        }
+    }
+}
+
+exports.startGame = function startGame(roomName){
+    for(let game of games){
+        if(game.id === roomName){
+            game.started = true;
+            game.roundNumber += 1;
+            return game;
+        }
+    }
+}
+
+exports.nextRound = function nextRound(roomName){
+    for(let game of games){
+        if(game.id === roomName){
+            game.roundNumber += 1;
+            return game;
+        }
+    }
 }

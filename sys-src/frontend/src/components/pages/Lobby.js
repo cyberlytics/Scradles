@@ -10,7 +10,7 @@ function Lobby(){
     // dann verwenden wir eine lobby für alles können aber ja nach mode anpassungen durchführen
     // navigate("/Lobby", {state: {mode: 'createdRoom'}});
     const {state} = useLocation();
-    const { mode, gameobject, playerNumber} = state;
+    const { mode, gameobject, playerNumber, room} = state;
 
     const socket = useContext(SocketContext);
     const [gameobjectState, setGameobject] = useState(gameobject);
@@ -19,13 +19,18 @@ function Lobby(){
     let userjoined;
 
     const handleSelection = (selection) => {
-        console.log(`Lobby selection: ${selection}`) 
+        console.log(`Lobby selection: ${selection}`)
+        socket.emit("selection", selection, room);
     }
 
     useEffect(() => {
         socket.on("userJoinsLobby", (gameobject, size) =>{
           roomsize = size;
           // hier wird dem aktuellen client das gameobject zur verfügung gestellt
+          setGameobject(gameobject);
+        })
+
+        socket.on("roundUpdate", (gameobject) =>{
           setGameobject(gameobject);
         })
     

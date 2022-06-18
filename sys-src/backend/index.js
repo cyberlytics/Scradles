@@ -72,7 +72,7 @@ app.use('/leaderboard', leaderboard)
 
 //gamearray
 let lobbyfunctions = require('./game/gamelobbyfunctions')
-
+let checkwin = require('./game/function/checkwin')
 
 //Socket
 let clientNo = 0;
@@ -99,6 +99,9 @@ io.on("connection", (socket) => {
                 socket.emit("joined", gamejoinobject)
                 //schickt allen clients im selben raum die nachricht
                 io.in(data).emit("userJoinsLobby", gamejoinobject, io.sockets.adapter.rooms.get(data).size)
+                gamejoinobject = lobbyfunctions.startGame(data)
+                console.log(gamejoinobject)
+                io.in(data).emit("gameStart", gamejoinobject)
             }
             else {
                 console.log('Cant join a full lobby')
@@ -150,6 +153,39 @@ io.on("connection", (socket) => {
         }
         // wenn spieler 1 verlässt dann raum schliesen und spieler 2 in lobby suchen bereich zurück setzen
         // wenn spieler 2 verlässt dann bleibt raum bestehen und spieler 1 bekommt eine nachricht
+    })
+
+    socket.on("selection", (selection,roomName) => {
+        if (io.sockets.adapter.rooms.get(roomName) !== null) {
+            let clients = io.sockets.adapter.rooms.get(roomName);
+            for (const clientId of clients ) {
+                const clientSocket = io.sockets.sockets.get(clientId);
+           
+                //socket in room
+                if(socket === clientSocket){
+                    let gameobject = lobbyfunctions.addSelection(socket.id,roomName,selection);
+                    console.log(gameobject)
+                    if(gameobject.p1Choice.length === gameobject.p2Choice.length){
+                        console.log("ready für auswertung")
+                        let index = gameobject.p1Choice.length - 1;
+                        let winner = checkwin(gameobject.p1Choice[index], gameobject.p2Choice[index]);
+                        lobbyfunctions.addRoundWinner(winner,roomName);
+                        gameobject = lobbyfunctions.nextRound(roomName);
+                        if(gameobject.roundNumber >= 3){
+                            console.log("game ende");
+                        }
+                        console.log(gameobject)
+                    } else {
+                        console.log("nicht ready für auswertung")
+                    }
+                    io.in(roomName).emit("roundUpdate", gameobject)
+                }
+            }
+            console.log(`backend selection: ${selection}`)
+        }
+        else {
+            //raum existiert nicht
+        }
     })
 });
 
