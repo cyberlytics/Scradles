@@ -14,6 +14,7 @@ function Room() {
 
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
+  const [playerNumber, setPlayernumber] = useState(null);
 
   useEffect(() => {
     socket.on("lobby_null", () => {
@@ -36,7 +37,7 @@ function Room() {
 
     socket.on("joined", (gameobject) => {
       console.log(gameobject)
-      navigate("/Lobby", {state: {mode: 'createdRoom'}});
+      navigate("/Lobby", {state: {mode: 'createdRoom', gameobject, playerNumber}});
     })
 
     return () => {
@@ -49,17 +50,19 @@ function Room() {
       socket.off("userJoinsLobby");
       socket.off("joined");
     }
-  }, [socket])
+  }, [socket,playerNumber])
   
   const joinRoom = () => {
 
     if (username !== "" && room !== "") {
+      setPlayernumber(2)
       socket.emit("join_room", room, username);
     }
   }
   const createRoom = () => {
 
     if (username !== "" && room !== "") {
+      setPlayernumber(1);
       socket.emit("create_room", room, username);
     }
   }

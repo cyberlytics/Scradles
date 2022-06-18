@@ -5,13 +5,13 @@
     height: 100%;
 }
 
-.gameboard {
+.gameboard-container {
     height: 100%;
     flex-grow: 2;
     background-color: rgb(129, 157, 182);
 }
 
-.scoreboard {
+.scoreboard-container {
     height: 100%;
     flex-grow: 1;
     background-color: aquamarine;
