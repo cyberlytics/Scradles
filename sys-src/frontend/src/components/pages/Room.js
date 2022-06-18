@@ -37,7 +37,7 @@ function Room() {
 
     socket.on("joined", (gameobject) => {
       console.log(gameobject)
-      navigate("/Lobby", {state: {mode: 'createdRoom', gameobject, playerNumber}});
+      navigate("/Lobby", {state: {mode: 'createdRoom', gameobject, playerNumber, room}});
     })
 
     return () => {

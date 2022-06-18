@@ -16,7 +16,7 @@ function checkwin(p0,p1){
         
         function decodeInput(input){
             switch (input) {
-                case 'Steine':
+                case 'Stein':
                   return 0;
                 case 'Schere':
                   return 1;
@@ -37,10 +37,10 @@ function checkwin(p0,p1){
                 return 'draw'
                 break;
             case distance==1:
-                return p0
+                return 'p0'
                 break;   
             case distance==2:
-                return p1
+                return 'p1'
                 break;
         }
     }
