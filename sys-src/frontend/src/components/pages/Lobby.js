@@ -32,8 +32,16 @@ function Lobby(){
           setGameobject(gameobject);
         })
 
-        socket.on("roundUpdate", (gameobject) =>{
+        socket.on("gameStart", (gameobject) =>{
+          // hier wird dem aktuellen client das gameobject zur verfügung gestellt
           setGameobject(gameobject);
+          setGameState('gameStart')
+        })
+
+        socket.on("roundUpdate", (gameobject) =>{
+          console.log("update yo")
+          setGameobject(gameobject);
+          setGameState('roundUpdate')
         })
 
         socket.on("roundWinner", (gameobject) =>{
@@ -41,6 +49,13 @@ function Lobby(){
           setGameState('roundWinner')
         })
     
+        socket.on("roundEnd", (gameobject) =>{
+          setTimeout(function() { 
+            setGameobject(gameobject);
+            setGameState('roundEnd')
+          }, 3000);
+        })
+
         return () => {
           // hier sollten auch noch die genau callbacks angegeben werden (socket.off("lobby_null", this.onLobbyFull))
           // dafür irgendwann die funktionen auslagern

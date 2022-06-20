@@ -6,7 +6,7 @@ import React, { useContext ,useEffect, useState} from 'react';
 function Ingame(props) {
     let gameobject = props.gameobject;
     let playerNumber = props.playerNumber;
-    console.log("REEENDER")
+
     const [selection, setSelection] = useState("None");
 
     let p1name = ''
@@ -43,15 +43,22 @@ function Ingame(props) {
             }
         }
     }
-    
+
     const handleSelection = (selection) => {
         setSelection(selection)
         props.onSelectionChange(selection) 
     }
 
+    useEffect(() => {
+        if(props.gameState === 'roundEnd'){
+            enemyChoice = 'None';
+            setSelection('None');
+        }
+    })
+
     return (
         <div className='ingame-container'>
-            <div className='gameboard-container'><GameBoard value={selection} name={p1name} onSelectionChange={handleSelection} main={true}/></div>
+            <div className='gameboard-container'><GameBoard value={selection} name={p1name} onSelectionChange={handleSelection} main={true} gameState={props.gameState}/></div>
             <div className='scoreboard-container'><ScoreBoard playerNumber={playerNumber} roundWinner={gameobject['roundWinner']}/></div>
             <div className='gameboard-container'><GameBoard value={enemyChoice} name={p2name} main={false}/></div>
         </div>
