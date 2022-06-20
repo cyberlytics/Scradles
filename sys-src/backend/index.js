@@ -169,16 +169,18 @@ io.on("connection", (socket) => {
                         console.log("ready für auswertung")
                         let index = gameobject.p1Choice.length - 1;
                         let winner = checkwin(gameobject.p1Choice[index], gameobject.p2Choice[index]);
-                        lobbyfunctions.addRoundWinner(winner,roomName);
+                        gameobject = lobbyfunctions.addRoundWinner(winner,roomName);
+                        io.in(roomName).emit("roundWinner", gameobject)
                         gameobject = lobbyfunctions.nextRound(roomName);
                         if(gameobject.roundNumber >= 3){
                             console.log("game ende");
                         }
                         console.log(gameobject)
+                        io.in(roomName).emit("roundEnd", gameobject)
                     } else {
                         console.log("nicht ready für auswertung")
+                        io.in(roomName).emit("roundUpdate", gameobject)
                     }
-                    io.in(roomName).emit("roundUpdate", gameobject)
                 }
             }
             console.log(`backend selection: ${selection}`)

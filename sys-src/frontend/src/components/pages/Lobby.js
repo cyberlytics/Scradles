@@ -13,7 +13,9 @@ function Lobby(){
     const { mode, gameobject, playerNumber, room} = state;
 
     const socket = useContext(SocketContext);
+    //todo: gameobjectState und gameState zusammenlegen
     const [gameobjectState, setGameobject] = useState(gameobject);
+    const [gameState, setGameState] = useState(null);
 
     let roomsize;
     let userjoined;
@@ -33,6 +35,11 @@ function Lobby(){
         socket.on("roundUpdate", (gameobject) =>{
           setGameobject(gameobject);
         })
+
+        socket.on("roundWinner", (gameobject) =>{
+          setGameobject(gameobject);
+          setGameState('roundWinner')
+        })
     
         return () => {
           // hier sollten auch noch die genau callbacks angegeben werden (socket.off("lobby_null", this.onLobbyFull))
@@ -44,7 +51,7 @@ function Lobby(){
 
     return(
         <div className='container'>
-            <Ingame gameobject={gameobjectState} playerNumber={playerNumber} onSelectionChange={handleSelection}/>
+            <Ingame gameState={gameState} gameobject={gameobjectState} playerNumber={playerNumber} onSelectionChange={handleSelection}/>
         </div>
     )
 }

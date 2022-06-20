@@ -6,12 +6,12 @@ import React, { useContext ,useEffect, useState} from 'react';
 function Ingame(props) {
     let gameobject = props.gameobject;
     let playerNumber = props.playerNumber;
-
+    console.log("REEENDER")
     const [selection, setSelection] = useState("None");
 
     let p1name = ''
     let p2name = 'Kein Mitspieler'
-    console.log(playerNumber)
+
     if(playerNumber === 1){
         if(typeof gameobject['players'][0] !== 'undefined') {
             p1name = gameobject['players'][0]['player'];
@@ -31,7 +31,18 @@ function Ingame(props) {
         }
     }
 
-
+    let enemyChoice = 'None'
+    if(gameobject['roundNumber'] > 0){
+        if(playerNumber === 1){
+            if(gameobject['p2Choice'][gameobject['roundNumber'] - 1] != undefined){
+                enemyChoice = gameobject['p2Choice'][gameobject['roundNumber'] - 1]
+            }
+        } else {
+            if(gameobject['p1Choice'][gameobject['roundNumber'] - 1] != undefined){
+                enemyChoice = gameobject['p1Choice'][gameobject['roundNumber'] - 1]
+            }
+        }
+    }
     
     const handleSelection = (selection) => {
         setSelection(selection)
@@ -41,8 +52,8 @@ function Ingame(props) {
     return (
         <div className='ingame-container'>
             <div className='gameboard-container'><GameBoard value={selection} name={p1name} onSelectionChange={handleSelection} main={true}/></div>
-            <div className='scoreboard-container'><ScoreBoard score1="win" score2="loss"/></div>
-            <div className='gameboard-container'><GameBoard value="Noneee" name={p2name} main={false}/></div>
+            <div className='scoreboard-container'><ScoreBoard playerNumber={playerNumber} roundWinner={gameobject['roundWinner']}/></div>
+            <div className='gameboard-container'><GameBoard value={enemyChoice} name={p2name} main={false}/></div>
         </div>
     );
 }
