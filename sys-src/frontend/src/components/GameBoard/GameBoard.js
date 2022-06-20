@@ -4,7 +4,7 @@ import Selection from '../Selection/Selection';
 
 function GameBoard(props) {
     let selection
-    if(props.main === true){
+    if(props.main === true && props.gameState !== 'roundWinner' && props.gameState !== null){
         selection = <Selection onSelectionChange={props.onSelectionChange}/>
     } else {
         selection = <></>

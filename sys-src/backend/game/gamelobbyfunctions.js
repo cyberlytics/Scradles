@@ -90,7 +90,7 @@ exports.addRoundWinner = function addRoundWinner(player, roomName){
     for(let game of games){
         if(game.id === roomName){
             game.roundWinner.push(player)
-            return game;
+            return Object.assign({}, game);
         }
     }
 }

@@ -169,8 +169,8 @@ io.on("connection", (socket) => {
                         console.log("ready für auswertung")
                         let index = gameobject.p1Choice.length - 1;
                         let winner = checkwin(gameobject.p1Choice[index], gameobject.p2Choice[index]);
-                        gameobject = lobbyfunctions.addRoundWinner(winner,roomName);
-                        io.in(roomName).emit("roundWinner", gameobject)
+                        let gameobjectWinner = lobbyfunctions.addRoundWinner(winner,roomName);
+                        io.in(roomName).emit("roundWinner", gameobjectWinner)
                         gameobject = lobbyfunctions.nextRound(roomName);
                         if(gameobject.roundNumber >= 3){
                             console.log("game ende");
