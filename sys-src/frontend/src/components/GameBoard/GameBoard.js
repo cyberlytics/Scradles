@@ -4,12 +4,12 @@ import Selection from '../Selection/Selection';
 
 function GameBoard(props) {
     let selection
-    if(props.main === true && props.gameState !== 'roundWinner' && props.gameState !== null){
-        selection = <Selection onSelectionChange={props.onSelectionChange}/>
+    if (props.main === true && props.gameState !== 'roundWinner' && props.gameState !== null) {
+        selection = <Selection onSelectionChange={props.onSelectionChange} />
     } else {
         selection = <></>
     }
-    return(
+    return (
         <div className='gameboard'>
             <div className='gameboard-name'>
                 <p>{props.name}</p>
@@ -21,7 +21,7 @@ function GameBoard(props) {
                 {selection}
             </div>
         </div>
-    );    
+    );
 }
 
 GameBoard.propTypes = {
