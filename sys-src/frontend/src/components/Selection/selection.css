@@ -3,10 +3,6 @@
     flex-direction: row;
 }
 
-.button:hover {
-    transform: scale(1.1);
-}
-
 .img {
     height: 50px;
     width: 50px;
@@ -17,6 +13,11 @@
     height: 50px;
     border-radius: 50%;
     border: none;
-    margin: 2px;
+    margin: 10px;
     cursor: pointer;
+    background: transparent;
+}
+
+.round-btn:hover {
+    transform: scale(1.1);
 }
