@@ -9,26 +9,26 @@ function Leaderboard(props) {
 
     useEffect(() => {
         fetch('http://localhost:8080/leaderboard/bulk/' + page)
-        .then(response => response.json())
-        .then(data => setData(data))
-        .catch(error => console.error(error));
+            .then(response => response.json())
+            .then(data => setData(data))
+            .catch(error => console.error(error));
     }, [page]);
 
-    const PageUp = () =>{
+    const PageUp = () => {
         setPage(page + 1);
     }
 
     const PageDown = () => {
-        if(page != 0){
+        if (page != 0) {
             setPage(page - 1);
         }
     }
 
-    return(
+    return (
         <div className='Leaderboard'>
             <div className='LeaderboardGrid'>
                 {data.map((args, i) => {
-                    return(
+                    return (
                         <div key={args._id} className='LeaderboardItem'>
                             <LeaderboardElement number={(10 * page) + i + 1} score={args.points} player={args.name} />
                         </div>
@@ -41,7 +41,7 @@ function Leaderboard(props) {
                 <a onClick={PageUp} href="#">&raquo;</a>
             </div>
         </div>
-    );    
+    );
 }
 
 
