@@ -7,7 +7,7 @@ function Ingame(props) {
     let gameobject = props.gameobject;
     let playerNumber = props.playerNumber;
 
-    const [selection, setSelection] = useState("None");
+    //const [selection, setSelection] = useState("None");
 
     let p1name = ''
     let p2name = 'Kein Mitspieler'
@@ -44,21 +44,24 @@ function Ingame(props) {
         }
     }
 
+    if(props.enemySelected === true && props.gameState === 'roundUpdate'){
+        enemyChoice = 'Selected';
+    }
+
     const handleSelection = (selection) => {
-        setSelection(selection)
+        //setSelection(selection)
         props.onSelectionChange(selection) 
     }
 
     useEffect(() => {
         if(props.gameState === 'roundEnd'){
             enemyChoice = 'None';
-            setSelection('None');
         }
     })
 
     return (
         <div className='ingame-container'>
-            <div className='gameboard-container'><GameBoard value={selection} name={p1name} onSelectionChange={handleSelection} main={true} gameState={props.gameState}/></div>
+            <div className='gameboard-container'><GameBoard value={props.playerSelection} name={p1name} onSelectionChange={handleSelection} main={true} gameState={props.gameState}/></div>
             <div className='scoreboard-container'><ScoreBoard playerNumber={playerNumber} roundWinner={gameobject['roundWinner']}/></div>
             <div className='gameboard-container'><GameBoard value={enemyChoice} name={p2name} main={false}/></div>
         </div>

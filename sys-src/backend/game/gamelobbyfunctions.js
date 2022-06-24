@@ -71,17 +71,20 @@ exports.leaveGame = function leaveGame(socketID) {
 exports.addSelection = function addSelection(socket, roomName, selection){
     for(let game of games){
         if(game.id === roomName){
+            let playerNumber = null;
             let diff = game.p1Choice.length - game.p2Choice.length
             if(game.players[0].socket === socket){
                 if(diff <= 0){
                     game.p1Choice.push(selection)
+                    playerNumber = 1;
                 }
             } else {
                 if(diff >= 0){
                     game.p2Choice.push(selection)
+                    playerNumber = 2;
                 }
             }
-            return game;
+            return [game, playerNumber];
         }
     }
 }
