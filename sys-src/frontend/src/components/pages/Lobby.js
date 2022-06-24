@@ -16,6 +16,8 @@ function Lobby(){
     //todo: gameobjectState und gameState zusammenlegen
     const [gameobjectState, setGameobject] = useState(gameobject);
     const [gameState, setGameState] = useState(null);
+    const [enemySelected, setEnemySelected] = useState(false);
+    const [selection, setSelection] = useState("None");
 
     let roomsize;
     let userjoined;
@@ -23,6 +25,7 @@ function Lobby(){
     const handleSelection = (selection) => {
         console.log(`Lobby selection: ${selection}`)
         socket.emit("selection", selection, room);
+        setSelection(selection)
     }
 
     useEffect(() => {
@@ -38,9 +41,11 @@ function Lobby(){
           setGameState('gameStart')
         })
 
-        socket.on("roundUpdate", (gameobject) =>{
+        socket.on("roundUpdate", (playerNumberOfSelection) =>{
           console.log("update yo")
-          setGameobject(gameobject);
+          if(playerNumberOfSelection !== playerNumber){
+            setEnemySelected(true)
+          }
           setGameState('roundUpdate')
         })
 
@@ -50,8 +55,10 @@ function Lobby(){
         })
     
         socket.on("roundEnd", (gameobject) =>{
-          setTimeout(function() { 
+          setTimeout(function() {
             setGameobject(gameobject);
+            setEnemySelected(false)
+            setSelection("None")
             setGameState('roundEnd')
           }, 3000);
         })
@@ -66,7 +73,7 @@ function Lobby(){
 
     return(
         <div className='container'>
-            <Ingame gameState={gameState} gameobject={gameobjectState} playerNumber={playerNumber} onSelectionChange={handleSelection}/>
+            <Ingame gameState={gameState} gameobject={gameobjectState} playerNumber={playerNumber} playerSelection={selection} enemySelected={enemySelected} onSelectionChange={handleSelection}/>
         </div>
     )
 }

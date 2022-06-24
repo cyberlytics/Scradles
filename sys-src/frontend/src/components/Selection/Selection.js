@@ -21,12 +21,10 @@ function Selection(props) {
     return (
         <div className='selection'>
             <button className="round-btn" onClick={() => props.onSelectionChange(props === "Papier" ? <Papier /> : "Papier")}><Papier /></button>
-            <button className="round-btn" onClick={() => props.onSelectionChange(props === "Schere" ? <Schere /> : "Scherenhand")}><Schere /></button>
+            <button className="round-btn" onClick={() => props.onSelectionChange(props === "Schere" ? <Schere /> : "Schere")}><Schere /></button>
             <button className="round-btn" onClick={() => props.onSelectionChange(props === "Stein" ? <Stein /> : "Stein")}><Stein /></button>
         </div>
     );
 }
-
-
 
 export default Selection;
