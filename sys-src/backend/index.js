@@ -163,7 +163,7 @@ io.on("connection", (socket) => {
            
                 //socket in room
                 if(socket === clientSocket){
-                    let gameobject = lobbyfunctions.addSelection(socket.id,roomName,selection);
+                    let [gameobject, playerNumber] = lobbyfunctions.addSelection(socket.id,roomName,selection);
                     console.log(gameobject)
                     if(gameobject.p1Choice.length === gameobject.p2Choice.length){
                         console.log("ready für auswertung")
@@ -178,8 +178,8 @@ io.on("connection", (socket) => {
                         console.log(gameobject)
                         io.in(roomName).emit("roundEnd", gameobject)
                     } else {
-                        console.log("nicht ready für auswertung")
-                        io.in(roomName).emit("roundUpdate", gameobject)
+                        // tritt ein wenn spieler eine auswahl trifft
+                        io.in(roomName).emit("roundUpdate", playerNumber)
                     }
                 }
             }
