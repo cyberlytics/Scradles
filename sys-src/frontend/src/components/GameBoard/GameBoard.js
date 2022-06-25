@@ -4,6 +4,7 @@ import Selection from '../Selection/Selection';
 import { ReactComponent as Schere } from '../images/scissors.svg';
 import { ReactComponent as Stein } from '../images/rock.svg';
 import { ReactComponent as Papier } from '../images/paper.svg';
+import Summary from '../Summary/Summary';
 
 function GameBoard(props) {
     let selection
@@ -38,6 +39,7 @@ function GameBoard(props) {
             <div className='gameboard-selection'>
                 {selection}
             </div>
+            
         </div>
     );
 }
