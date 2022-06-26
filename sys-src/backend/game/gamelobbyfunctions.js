@@ -125,3 +125,7 @@ exports.setWinner = function setWinner(roomName, winnerName){
         }
     }
 }
+
+exports.findGame = function findGame(){
+    return games.find(element => element.players.length == 1);
+}
