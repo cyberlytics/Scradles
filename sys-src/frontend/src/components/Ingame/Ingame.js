@@ -1,5 +1,6 @@
 import ScoreBoard from '../ScoreBoard/ScoreBoard';
 import GameBoard from '../GameBoard/GameBoard';
+import Summary from '../Summary/Summary';
 import './Ingame.css';
 import React, { useContext ,useEffect, useState} from 'react';
 
@@ -59,8 +60,27 @@ function Ingame(props) {
         }
     })
 
+    const getWinnerName = (gameobject) => {
+        if(gameobject['winner'] === 'p1' && playerNumber === 1){
+            return [gameobject['players'][0]['player'],true]
+        } else if(gameobject['winner'] === 'p1' && playerNumber === 2) {
+            return [gameobject['players'][0]['player'],false]
+        } else if(gameobject['winner'] === 'p2' && playerNumber === 1) {
+            return [gameobject['players'][1]['player'],false]
+        } else {
+            return [gameobject['players'][1]['player'],true]
+        }
+    }
+
+    let winnerModal = ''
+    if (props.gameState === 'gameWinner'){
+        let [winnerName, win] = getWinnerName(gameobject)
+        winnerModal = <Summary winner={winnerName} win={win}/>
+    }
+
     return (
         <div className='ingame-container'>
+            {winnerModal}
             <div className='gameboard-container'><GameBoard value={props.playerSelection} name={p1name} onSelectionChange={handleSelection} main={true} gameState={props.gameState}/></div>
             <div className='scoreboard-container'><ScoreBoard playerNumber={playerNumber} roundWinner={gameobject['roundWinner']}/></div>
             <div className='gameboard-container'><GameBoard value={enemyChoice} name={p2name} main={false}/></div>

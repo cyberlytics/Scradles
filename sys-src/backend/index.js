@@ -172,8 +172,24 @@ io.on("connection", (socket) => {
                         let gameobjectWinner = lobbyfunctions.addRoundWinner(winner,roomName);
                         io.in(roomName).emit("roundWinner", gameobjectWinner)
                         gameobject = lobbyfunctions.nextRound(roomName);
-                        if(gameobject.roundNumber >= 3){
-                            console.log("game ende");
+                        if(gameobject.roundNumber > 3){
+                            let p1Wins = 0;
+                            for (element of gameobject.roundWinner) {
+                                p1Wins += element === 'p1' ? 1 : 0;
+                            }
+                            let p2Wins = 0;
+                            for (element of gameobject.roundWinner) {
+                                p2Wins += element === 'p2' ? 1 : 0;
+                            }
+
+                            if(p1Wins > p2Wins) {
+                                lobbyfunctions.setWinner(roomName,'p1')
+                            } else if (p1Wins < p2Wins){
+                                lobbyfunctions.setWinner(roomName,'p2')
+                            } else {
+                                lobbyfunctions.setWinner(roomName,'draw')
+                            }
+                            io.in(roomName).emit("gameWinner", gameobject)
                         }
                         console.log(gameobject)
                         io.in(roomName).emit("roundEnd", gameobject)

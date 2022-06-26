@@ -60,9 +60,9 @@ body.active-modal {
 }
 
 .score-win {
-    background-color: green;
+    background-color: rgb(63, 175, 63);
 }
 
 .score-loss {
-    background-color: red;
+    background-color: rgb(216, 94, 94);
 }

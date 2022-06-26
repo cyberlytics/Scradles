@@ -9,7 +9,7 @@ import Summary from '../Summary/Summary';
 function GameBoard(props) {
     let selection
     let image
-    if (props.main === true && props.gameState !== 'roundWinner' && props.gameState !== null) {
+    if (props.main === true && props.gameState !== 'roundWinner' && props.gameState !== null && props.gameState !== 'gameWinner') {
         selection = <Selection onSelectionChange={props.onSelectionChange} />
         if (props.value === "Schere") {
             image = <Schere />
