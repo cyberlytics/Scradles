@@ -19,7 +19,7 @@ import { ReactComponent as Papier } from '../images/paper.svg';
 
 function Selection(props) {
     return (
-        <div className='selection'>
+        <div className='selection' data-testid='selection'>
             <button className="round-btn" onClick={() => props.onSelectionChange(props === "Papier" ? <Papier /> : "Papier")}><Papier /></button>
             <button className="round-btn" onClick={() => props.onSelectionChange(props === "Schere" ? <Schere /> : "Schere")}><Schere /></button>
             <button className="round-btn" onClick={() => props.onSelectionChange(props === "Stein" ? <Stein /> : "Stein")}><Stein /></button>

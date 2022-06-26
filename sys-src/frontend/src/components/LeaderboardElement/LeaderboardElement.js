@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function LeaderboardElement(props) {
 
     return(
-        <div className='LeaderboardElement'>
+        <div className='LeaderboardElement' data-testid='leaderboardElement'>
             <div className='Number'>{props.number}</div>
             <div className='Score'>{props.score}</div>
             <div className='Player'>{props.player}</div>

@@ -6,7 +6,7 @@ function Header(props) {
     let navigate = useNavigate();
 
     return(
-        <div className='Header'>
+        <div className='Header' data-testid='header'>
             <h1 className='header-title'
                 onClick={() => {navigate("/");}}>
                 Scradles

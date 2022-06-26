@@ -21,7 +21,7 @@ function ScoreBoard(props) {
 
 
     return (
-        <div>
+        <div data-testid='scoreboard'>
             <p>Score</p>
             <div style={{ minHeight: 50 }}>
                 <div className={"circle score-" + (score[0] === undefined ? 'null' : score[0])} />

@@ -26,7 +26,7 @@ function GameBoard(props) {
     }
 
     return (
-        <div className='gameboard'>
+        <div className='gameboard' data-testid='gameBoard'>
             <div className='gameboard-name'>
                 <p>{props.name}</p>
             </div>
