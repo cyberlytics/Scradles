@@ -34,6 +34,6 @@ describe('CheckWin', () => {
     });
 
     it('Input error', () => {
-        assert.throws(checkwin('abc', 'def'));
+        assert.throws(() => {checkwin('abc', 'def')}, Error);
     })
 });
