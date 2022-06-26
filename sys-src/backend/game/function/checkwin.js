@@ -1,15 +1,15 @@
 
 function checkwin(p0,p1){
     // falls ein Spieler seine Wahl nicht getroffen hat
-    if (p0=="None" && p1!='None'){
-        return p1
+    if (p0=='None' && p1!='None'){
+        return 'p2';
     }
     else if (p1=='None' && p0!='None'){
-        return p0
+        return 'p1';
     }
     //für den Fall, dass die beiden Spieler ihre Wahl nicht getroffen haben
     else if (p0=='None' && p1=='None'){
-        return 'draw'
+        return 'draw';
     }
     //wenn beide Spieler ihre Wahl getroffen haben
     else{
@@ -34,14 +34,11 @@ function checkwin(p0,p1){
         //Ich gebe den Gewinner zurück
         switch (true) {
             case distance==0:
-                return 'draw'
-                break;
+                return 'draw';
             case distance==1:
-                return 'p1'
-                break;   
+                return 'p1';
             case distance==2:
-                return 'p2'
-                break;
+                return 'p2';
         }
     }
 }
