@@ -22,7 +22,7 @@ export default function Summary(props) {
     return (
         <>
             {modal && (
-                <div className="modal">
+                <div className="modal" data-testid='summary'>
                     <div className="overlay"></div>
                     <div className={win}>
                         <h2>Summary</h2>

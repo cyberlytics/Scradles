@@ -79,7 +79,7 @@ function Ingame(props) {
     }
 
     return (
-        <div className='ingame-container'>
+        <div className='ingame-container' data-testid='ingame'>
             {winnerModal}
             <div className='gameboard-container'><GameBoard value={props.playerSelection} name={p1name} onSelectionChange={handleSelection} main={true} gameState={props.gameState}/></div>
             <div className='scoreboard-container'><ScoreBoard playerNumber={playerNumber} roundWinner={gameobject['roundWinner']}/></div>

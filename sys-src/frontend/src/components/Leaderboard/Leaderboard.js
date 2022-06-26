@@ -25,7 +25,7 @@ function Leaderboard(props) {
     }
 
     return (
-        <div className='Leaderboard'>
+        <div className='Leaderboard' data-testid='leaderboard'>
             <div className='LeaderboardGrid'>
                 {data.map((args, i) => {
                     return (

@@ -5,7 +5,7 @@ function MatchMenu(props) {
     let navigate = useNavigate();
 
     return (
-        <div className='matchmenu-container'>
+        <div className='matchmenu-container' data-testid='matchMenu'>
             <div className='matchmenu'>
                 <h3>Spiel wählen</h3>
                 <button>Spiel starten</button>
