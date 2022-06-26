@@ -1,15 +1,32 @@
 import './ScoreBoard.css';
-
 import PropTypes from 'prop-types';
 
+
+
+
 function ScoreBoard(props) {
+    let score = [undefined, undefined, undefined]
+
+    props.roundWinner.forEach((element, index) => {
+        if (props.playerNumber === 1) {
+            score[index] = element === 'p1' ? 'win' : 'loss';
+        } else {
+            score[index] = element === 'p2' ? 'win' : 'loss';
+        }
+        if (element === 'draw') {
+            score[index] = undefined
+        }
+    });
+
+
+
     return (
-        <div>
+        <div data-testid='scoreboard'>
             <p>Score</p>
-            <div style={ { minHeight: 50} }>
-                <div className={"circle score-" + (props.score1 === undefined ? 'null' : props.score1)} />
-                <div className={"circle score-" + (props.score2 === undefined ? 'null' : props.score2)} />
-                <div className={"circle score-" + (props.score3 === undefined ? 'null' : props.score3)} />
+            <div style={{ minHeight: 50 }}>
+                <div className={"circle score-" + (score[0] === undefined ? 'null' : score[0])} />
+                <div className={"circle score-" + (score[1] === undefined ? 'null' : score[1])} />
+                <div className={"circle score-" + (score[2] === undefined ? 'null' : score[2])} />
             </div>
         </div>
     );

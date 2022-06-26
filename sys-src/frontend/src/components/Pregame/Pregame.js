@@ -5,7 +5,7 @@ function startGame(){
 
 function Pregame() {
     return (
-        <button onClick={startGame}>Spiel starten</button>
+        <button onClick={startGame} data-testid='pregame'>Spiel starten</button>
     );
 }
 

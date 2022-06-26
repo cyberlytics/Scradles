@@ -3,7 +3,7 @@ import './Footer.css';
 function Footer(props) {
 
     return(
-        <div className='Footer'>
+        <div className='footer' data-testid='footer'>
             <span>©</span>
         </div>
     );    
