@@ -26,6 +26,12 @@
 .room button {
     width: 80%;
     padding: 0;
+    cursor: pointer;
+}
+
+
+button:hover {
+    cursor: pointer;
 }
 
 .room input {
@@ -36,4 +42,21 @@
 .room h3 {
     margin: 0;
     color: chocolate;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+
+input[type=text]:focus {
+    border: 3px solid #555;
+    transform: scale(1.1);
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import RankedLadder from '../RankedLadder/RankedLadder';
+import Leaderboard from '../Leaderboard/Leaderboard';
 import './pages.css';
 
 function Ladder(){
     return (
         <div className='container'>
-            <RankedLadder/>
+            <Leaderboard/>
         </div>
     )
 }

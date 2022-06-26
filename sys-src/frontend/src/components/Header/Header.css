@@ -23,10 +23,12 @@ nav {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    font-size: 18px;
 }
 
 nav a {
     cursor: pointer;
+    font-size: 18px;
 }
 
 nav a:hover {

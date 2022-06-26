@@ -3,7 +3,7 @@ import './Login.css';
 function Login(props) {
 
     return(
-        <div className='Login'>
+        <div className='Login' data-testid='login'>
             <div className='LoginElement'>
                 <h2 className='Text'>Anmeldung</h2>
                 <input className='Username' placeholder='Username' type='text'></input>

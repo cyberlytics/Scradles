@@ -1,0 +1,36 @@
+.LeaderboardGrid {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    display: grid;
+    row-gap: 10px;
+}
+
+.Pagination {
+    display: block;
+    width: 127px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+.Pagination a {
+    color: black;
+    background-color: rgb(180, 180, 180);
+
+    margin: 1px;
+    border-radius: 5px;
+    padding: 8px 16px;
+
+    text-decoration: none;
+}
+
+.Page {
+    cursor: default;
+}
+
+.Pagination a:hover:not(.Page) {
+    background-color: chocolate;
+}

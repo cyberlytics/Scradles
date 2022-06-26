@@ -1,10 +1,10 @@
-import './RankedLadderElement.css';
+import './LeaderboardElement.css';
 import PropTypes from 'prop-types';
 
-function RankedLadderElement(props) {
+function LeaderboardElement(props) {
 
     return(
-        <div className='RankedLadderElement'>
+        <div className='LeaderboardElement' data-testid='leaderboardElement'>
             <div className='Number'>{props.number}</div>
             <div className='Score'>{props.score}</div>
             <div className='Player'>{props.player}</div>
@@ -13,10 +13,10 @@ function RankedLadderElement(props) {
 }
 
 
-RankedLadderElement.propTypes = {
+LeaderboardElement.propTypes = {
     number: PropTypes.number,
     score: PropTypes.number,
     player: PropTypes.string
 }
 
-export default RankedLadderElement;
+export default LeaderboardElement;

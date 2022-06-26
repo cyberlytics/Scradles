@@ -11,7 +11,7 @@ import {SocketContext, socket} from '../../context/socket';
 
 function App() {
   return (
-  <div className='App'>
+  <div className='App' data-testid='app'>
     <SocketContext.Provider value={socket}>
       <Router>
         <Header/>
@@ -19,7 +19,7 @@ function App() {
           <Route path ="/" element={<Startpage/>}/>
           <Route path ="/Room" element={<Room/>}/>
           <Route path="/Lobby" element={<Lobby/>}/>
-          <Route path="/RankedLadder" element={<Ladder/>}/>
+          <Route path="/Leaderboard" element={<Ladder/>}/>
           <Route path ="*" element={<Startpage/>}/>
         </Routes>
         <Footer/>

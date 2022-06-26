@@ -1,0 +1,19 @@
+.gameboard {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.gameboard-name {
+    flex-grow: 1;
+}
+
+.gameboard-value {
+    flex-grow: 7;
+}
+
+.gameboard-selection {
+    flex-grow: 1;
+}
