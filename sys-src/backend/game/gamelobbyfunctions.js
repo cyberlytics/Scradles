@@ -116,3 +116,12 @@ exports.nextRound = function nextRound(roomName){
         }
     }
 }
+
+exports.setWinner = function setWinner(roomName, winnerName){
+    for(let game of games){
+        if(game.id === roomName){
+            game.winner = winnerName;
+            return game;
+        }
+    }
+}

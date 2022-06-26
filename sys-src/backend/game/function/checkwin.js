@@ -37,10 +37,10 @@ function checkwin(p0,p1){
                 return 'draw'
                 break;
             case distance==1:
-                return 'p0'
+                return 'p1'
                 break;   
             case distance==2:
-                return 'p1'
+                return 'p2'
                 break;
         }
     }
