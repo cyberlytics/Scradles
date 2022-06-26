@@ -79,7 +79,7 @@ function Lobby(){
       }, [socket])
 
     return(
-        <div className='container'>
+        <div className='container'  data-testid='lobby'>
             <Ingame gameState={gameState} gameobject={gameobjectState} playerNumber={playerNumber} playerSelection={selection} enemySelected={enemySelected} onSelectionChange={handleSelection}/>
         </div>
     )
