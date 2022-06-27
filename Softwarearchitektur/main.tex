@@ -69,7 +69,8 @@ d.tahata@oth-aw.de}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 
-Scradles ist eine online spielbares, crossplattformunabhängige Multiplayerversion von "Schere-Stein-Papier". Mehrere Spieler sollen dabei simultan, nicht rundenbasiert, mit der Plattform interagieren und gegeneinander antreten können. Eine Registrierung ist für den Nutzer optional; diese wird nur für den Eintrag in die globale Rangliste benötigt.
+Scradles ist eine online spielbare,
+\\ crossplattformunabhängige Multiplayerversion von "Schere-Stein-Papier". Mehrere Spieler sollen dabei simultan, nicht rundenbasiert, mit der Plattform interagieren und gegeneinander antreten können. Eine Registrierung ist für den Nutzer optional; diese wird nur für den Eintrag in die globale Rangliste benötigt.
 
 \end{abstract}
 
@@ -95,23 +96,23 @@ Ziel dieser Anwendung ist, Nutzern dieser Anwendung die Möglichkeit zu bieten, 
 
 Es wurde als Grundstruktur der MERN-Stack Framework verwendet.
 Dieses Framework erleichtert es, eine 3-Schichten-Architektur aufzubauen. Dabei ist "MERN" ein Akronym für die darin verbauten Technologien:
-
+\\
 \begin{itemize}
     \item \textbf {M}ongoDB
     \item \textbf {E}xpressJS
-    \item \textbf {R}eactJS
+    \item \textbf {R}eact
     \item \textbf {N}ode.js
 \end{itemize}
 
 MongoDB wird als grundlegende Datenbank verwendet. Darin können registrierte Spieler gespeichert werden und darauf basierend eine Bestenliste mit Punktestand generiert werden.
-MongoDB gehört zu den sog. dokumentenbasierten NoSQL-Datenbanken. Ein großer Vorteil dieser Art von Abspeicherung und Strukturierung ist die einfache verteilung der Arbeitslast auf mehrere Server.
+MongoDB gehört zu den sog. dokumentenbasierten NoSQL-Datenbanken. Ein großer Vorteil dieser Art von Abspeicherung und Strukturierung ist die einfache Verteilung der Arbeitslast auf mehrere Server.
 \\
 Express (manchmal auch als Express.js bezeichnet) ist ein Back-End-Webanwendungsframework, das auf Node.js ausgeführt wird.
 \\
 Node.js ist eine JavaScript-Laufzeitumgebung und ermöglicht die Implementierung von Javascript auf einem Server. Somit ist man in der Lage, einfach und unkompliziert Javascript außerhalb eines Browsers auszuführen und mit Datenbanken wie MongoDB zu verbinden.
 
 \\
-ReactJS ist eine JavaScript-Bibliothek, geeignet für das Erstellen von Web-Benutzeroberflächen. Ein großer Vorteil liegt in der Generierung wiedervewendbarer Komponenten, die auf jeweiligen Webseiten eingebunden werden können.
+React ist eine JavaScript-Bibliothek, geeignet für das Erstellen von Web-Benutzeroberflächen. Ein großer Vorteil liegt in der Generierung wiedervewendbarer Komponenten, die auf jeweiligen Webseiten eingebunden werden können.
 Für die Kommunikation zwischen den Schichten - Frontend und Server - also der Client-Server-Kommunikation, wird unter anderem Socket.IO verwendet. Diese Technologie erlaubt eine niedrige Latenzzeit und ermöglicht eine Skalierung auf mehrere Server und Senden von Ereignissen an alle verbundenen Clients.
 \\
 Desweiteren wird "nginx" verwendet, eine Webserver-Software zur Lastverteilung (umfangreiche Anfragen an einen Serversystem), um die aufkommenden Anfragen  auf mehrere Server zu verteilen. Dies hat eine effizientere Gesamtperformance zur Folge.
@@ -131,7 +132,7 @@ Es gibt eine Liste an Qualitätszielen, welche erreicht werden soll.
     \item Alle Interaktionsartefakte (z.B. Buttons) sollen eine Funktionalität erfüllen. Interaktionsartefakte oder Verlinkungen ohne Funktion sind nicht vorgesehen.
     \item Damit wird verhindert, dass das System in einen undefinierten Zustand gerät und es zu einen Absturz der Anwendung kommt.
   \end{itemize}
-    
+
     \item Funktionalität \\
     \begin{itemize}
         \item System soll zwei Clients verbinden können, sodass diese simultan an einen Spiel teilnehmen können.
@@ -147,7 +148,7 @@ Es gibt eine Liste an Qualitätszielen, welche erreicht werden soll.
     \begin{itemize}
         \item Nutzern wird nur eine geringe Interaktionsmöglichkeit geboten. Dies soll einen ausreichenden Zugriffs- und Veränderungsschutz von Daten ermöglichen.
     \end{itemize}
-    
+
 \end{itemize}
 .
 
@@ -162,7 +163,7 @@ Es gibt eine Liste an Qualitätszielen, welche erreicht werden soll.
 \caption{MERN-Stack-Schichtenmodell}%
 \end{figure}
 \begin{itemize}
-Das 3-Schichten-Archtitekturmodell sieht eine Untergliederung in Benutzeroberfläche (Web-Frontend), Applikation (Server) und Datenbanksystem (Backend) vor. Dabei werden wie bereits erwähnt, die Javascript-Bibliothek "ReactJS" für das Frontend, die Technologien "ExpressJS" und "Node.js" für die serverseitige Logikebene verwendet. Als Datenbank kommt MongoDB zum Einsatz.
+Das 3-Schichten-Archtitekturmodell sieht eine Untergliederung in Benutzeroberfläche (Web-Frontend), Applikation (Server) und Datenbanksystem (Backend) vor. Dabei werden wie bereits erwähnt, die Javascript-Bibliothek "React" für das Frontend, die Technologien "ExpressJS" und "Node.js" für die serverseitige Logikebene verwendet. Als Datenbank kommt MongoDB zum Einsatz.
 \\
 Für die bidirektionale Kommunikation zwischen Client und Server wird Socket.IO verwendet.
 \\
@@ -176,17 +177,20 @@ Mithilfe der Docker-Software können alle benötigten  Bibliotheken für alle Pr
 
 \begin{table}
 \centering
-\begin{tabular}{|l|l|ll} 
+\begin{tabular}{|l|l|ll}
 \cline{1-2}
-Effiziente und \\gute Antwortzeiten  & \begin{tabular}[c]{@{}l@{}}Mittels Lastverteilung durch nginx und Node.js sowie \\ durch ihre Eigenschaften der guten Skalierbarkeit von \\ Node.js und Socket.IO ~\end{tabular}                                     &  &   \\ 
+Effiziente und \\gute Antwortzeiten  & \begin{tabular}[c]{@{}l@{}}Mittels Lastverteilung durch nginx \\und Node.js sowie \\ durch ihre Eigenschaften der guten \\Skalierbarkeit von \\ Node.js und Socket.IO ~\end{tabular} &  &   \\
 \cline{1-2}
-Architekturstil & \begin{tabular}[c]{@{}l@{}}MicroServices für schnelle Adaptionsmöglichkeiten \\von Trends und Design \\Verwendung von React im Frontend \\ aufgrund von Modularisierung  ~\end{tabular} &  &   \\ 
+Zuverlässigkeit und Funktionalität  & \begin{tabular}[c]{@{}l@{}} Es wurden sich an verschiedene \\
+Programmierparadigmen gehalten und versucht,\\ anzuwenden. \\
+Darunter: \\
+- "Separation of Concerns", \\
+- "Single Responsibility Principle" \\
+- "Don't repeat yourself" und \\
+- "Verständlichkeit"
+~\end{tabular}                                     &  &   \\
 \cline{1-2}
-Zuverlässigkeit & \begin{tabular}[c]{@{}l@{}}sdlfks bölksjföjdb sflkjdb ölksf bölkj s öldsfli \\sdöls fasdflöi sdfö lsv ölsdknfsdf dvlk sdvasdlö \\vjsdvasdvkdj h cölkh dv sdvlk~\end{tabular} &  &   \\ 
-\cline{1-2}
-Funktionalität  & \begin{tabular}[c]{@{}l@{}}slk b dsöl jsfd hsdkl sl dfas kjlsdfsdfö\\ssl o isv sdlkj sfd ljxc sdvölj sdv öklvclkj sdv sdöl~\end{tabular}                                     &  &   \\ 
-\cline{1-2}
-Benutzbarkeit   & \begin{tabular}[c]{@{}l@{}}saöli b sdfölk sdfj ölksfd~ lkj dsvfsöivj sdöl aslkjsdv~\\sdlf sdv sdlkjsdf asd\end{tabular}                                                      &  &   \\ 
+Benutzbarkeit   & \begin{tabular}[c]{@{}l@{}}Die 10 Heuristiken nach Jakob Nielsen \cite{c4} \\ für ein nutzbares User Interface \\ Design sind in die Anordnung \\ und Strukturierung \\ eingebracht worden.~\\ Ebenso ist die Norm \\ISO 9241-110 "Dialog \cite{c5}\\ principles" mitbedacht worden.\end{tabular}                                                      &  &   \\
 \cline{1-2}
 Sicherheit      & \begin{tabular}[c]{@{}l@{}}
 
@@ -198,22 +202,26 @@ Es werden neben der geringen \\ Eingabe- und Interaktionsmöglichkeit \\ keine w
 \section{ARCHITEKTURPRINZIPIEN}
 \subsection{Architekturprinzipien Frontend}
 \begin{itemize}
-    \item Modularität durch Components
-    \item 
-    \item 
-    \item 
+    \item Modularität durch Components \\
+    ("Separation of Concerns" +  \\
+    \item Verständlichkeit des Codes \\
+    ("DRY" + "KISS")
 \end{itemize}
+    \\Bei "DRY" (engl. für "Don't repeat yourself") ist ein Prinzip für eine gut strukturierte und verständliche Codekonvention. Ziel dieses Prinzips ist die Verminderung von Coderedundanz; also Vermeidung von Codereplikationen. Module sollen dabei einmal definiert und an geeigneter Stelle eingesetzt werden. Dies hat den Vorteil, dass Änderungen am Code nur einmal vorgenommen werden müssen und hat somit eine bessere Modularität zur Folge.
+    \\Dieses Prinzip geht Hand-in-Hand mit dem Prinzip "KISS" (engl. "Keep it short, simple", deutsch: "Halte es kurz und simpel"). Dieses Apronym beschreibt die Idee, Code möglichst auf seine wesentlichen Aufgaben zu reduzieren. In Kombination mit dem DRY-Prinzip bedeutet dies, eine Funktion oder ein Modul mit lediglich einer Aufgabe zu definieren und mehrere Module, wenn nötig, ineinander zu verbauen.
+    \\
+    Das Prinzip "Seperation of Concerns" findet im Bereich der Programmiersprachenaufteilung statt. Es wird JavaScript für Funktions- und Moduldefinitionen genutzt, die äußere Erscheinung wird jedoch mittels CSS bearbeitet. (vgl. Wikipedia, 2022 \cite{c8})
+
 \subsection{Architekturprinzipien Applikationsebene}
 \begin{itemize}
-    \item 
-    \item 
+    \item
+    \item
     \item
     \item
 \end{itemize}
 \subsection{Architekturprinzipien Backend}
 %Hier steht noch weiters zum Aufbau
 %der Aufbau ist ab jetzt variabel, je nachdem, wo man 5voher schon etwas mit dazu geschrieben hat oder noch 5weiter erläutern möchte
-https://www.informatik-aktuell.de/entwicklung/methoden/architektur-ohne-firlefanz-ihre-loesung-auf-einem-bierdeckel.html
 
 \begin{itemize}
     \item \textbf {M}ongoDB
@@ -229,6 +237,12 @@ Das "Minimum viable product", kurz MVP, sieht vor, dass zwei Spieler gegeneinand
 Nach einer gewissen Inaktivität, soll automatisch eine Beendigung des Spieles inkraft treten.
 Ist ein Spieler registriert und angemeldet, wird die Anzahl seiner gewonnen Spiele in einer globalen Rangliste vermerkt. Es ist ein Spiel ohne Anmeldung oder Registrierung möglich.
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=0.35]{FrontEndApplication.png}
+\caption{Abbildung FrontEnd}%
+\end{figure}
+\begin{itemize}
 
 \section{CONCLUSION}
 
@@ -252,10 +266,6 @@ Ist ein Spieler registriert und angemeldet, wird die Anzahl seiner gewonnen Spie
 
 Appendixes should appear before the acknowledgment.
 
-\section*{ACKNOWLEDGMENT}
-
-The preferred spelling of the word ``acknowledgment'' in America is without an ``e'' after the ``g''. Avoid the stilted expression, ``One of us (R. B. G.) thanks . . .''  Instead, try ``R. B. G. thanks''. Put sponsor acknowledgments in the unnumbered footnote on the first page.
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -265,11 +275,12 @@ References are important to the reader; therefore, each citation must be complet
 
 
 \begin{thebibliography}{99}
-
-\bibitem{c1} G. O. Young, ``Synthetic structure of industrial plastics (Book style with paper title and editor),'' 	in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York: McGraw-Hill, 1964, pp. 15--64.
-\bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).	Belmont, CA: Wadsworth, 1993, pp. 123--135.
-\bibitem{c3} H. Poor, An Introduction to Signal Detection and Estimation.   New York: Springer-Verlag, 1985, ch. 4.
-
+\bibitem{c4} Nielsen, Jakob. "usability heuristics. Nielsen Norman Group." (10).
+\bibitem{c5} DIN, ENISO. Ergonomie der Mensch-System-Interaktion–Teil 110: Grundsätze der Dialoggestaltung (ISO 9241-110: 2006)[Ergonomics of human-system interaction–Part 110: Principles of dialogue design]. Deutsche Fassung EN ISO, S. 9241-110, 2006.
+\bibitem{c6} S. Zörner.(2019, Dezember 09). Architektur ohne Firlefanz – Ihre Lösung auf einem Bierdeckel [online] Available: https://www.informatik-aktuell.de/entwicklung/methoden/architektur-ohne-firlefanz-ihre-loesung-auf-einem-bierdeckel.html
+\bibitem{c6} MEHRA, Monika, et al. MERN stack Web Development. Annals of the Romanian Society for Cell Biology, 25. Jg., Nr. 6, S. 11756-11761, 2021.
+\bibitem{c8} Wikipedia.(2022, Juni 17). Separation of concerns [online]
+Available: https://en.wikipedia.org/wiki/Separation_of_concerns
 \end{thebibliography}
 
 
