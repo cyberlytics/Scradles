@@ -9,7 +9,7 @@ function MatchMenu(props) {
             <div className='matchmenu'>
                 <h3>Spiel wählen</h3>
                 <button>Spiel starten</button>
-                <button onClick={() => { navigate("/Room"); }}>Raum erstellen</button>
+                <button onClick={() => { navigate("/Room"); }}>Raum erstellen/beitreten</button>
             </div>
         </div>
     );
